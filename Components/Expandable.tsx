@@ -1,5 +1,6 @@
 import React, {
   createContext,
+  ReactNode,
   useCallback,
   useEffect,
   useMemo,
@@ -7,13 +8,18 @@ import React, {
   useState,
 } from "react";
 
-const ExpandableContext = createContext({});
+const initialContext = {
+  expanded: false,
+  toggle: () => {},
+};
+
+export const ExpandableContext = createContext(initialContext);
 
 const { Provider } = ExpandableContext;
 
 type ExpandableProps = {
-  children: JSX.Element;
-  onExpand: (expanded: boolean) => void;
+  children: ReactNode;
+  onExpand?: (expanded: boolean) => void;
 };
 
 const Expandable = ({ children, onExpand }: ExpandableProps) => {
@@ -26,7 +32,7 @@ const Expandable = ({ children, onExpand }: ExpandableProps) => {
 
   const componentJustMounted = useRef(true);
   useEffect(() => {
-    if (!componentJustMounted.current) {
+    if (!componentJustMounted.current && onExpand) {
       onExpand(expanded);
     } else {
       componentJustMounted.current = false;
