@@ -1,0 +1,16 @@
+.theme-button {
+  background: none;
+  color: hsl(0, 0%, 13%);
+  display: block;
+  margin: 0;
+  padding: 1em 1.5em;
+  position: relative;
+  width: 100%;
+  outline: none;
+  text-align: center;
+}
+
+.theme-button:focus,
+.theme-button:hover {
+  background: hsl(216, 94%, 94%);
+}
