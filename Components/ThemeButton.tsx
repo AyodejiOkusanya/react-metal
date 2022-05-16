@@ -1,17 +1,28 @@
 import { useContext } from "react";
 import { ThemeContext } from "./Theme";
-import "../styles/ThemeButton.module.css";
+import styles from "../styles/ThemeButton.module.css";
 
 type ThemeButtonProps = {
   className?: string;
 };
 
-export const ThemeButton = ({ className = "" }: ThemeButtonProps) => {
+export const ThemeButton = ({
+  className = "",
+  ...otherProps
+}: ThemeButtonProps) => {
   const { isDarkMode, toggle } = useContext(ThemeContext);
-  const classNames = ["theme-button", className];
+  const dynamicStyles = {
+    backgroundColor: `${isDarkMode ? "white" : "black"}`,
+  };
+  const combinedClassNames = [styles.themeButton, className];
 
   return (
-    <button className={classNames.join(" ")} onClick={toggle}>
+    <button
+      className={styles.themeButton}
+      // style={dynamicStyles}
+      onClick={toggle}
+      {...otherProps}
+    >
       {isDarkMode ? "Light Mode" : "Dark Mode"}
     </button>
   );
