@@ -17,12 +17,7 @@ export const ThemeButton = ({
   const combinedClassNames = [styles.themeButton, className];
 
   return (
-    <button
-      className={styles.themeButton}
-      // style={dynamicStyles}
-      onClick={toggle}
-      {...otherProps}
-    >
+    <button className={styles.themeButton} onClick={toggle} {...otherProps}>
       {isDarkMode ? "Light Mode" : "Dark Mode"}
     </button>
   );

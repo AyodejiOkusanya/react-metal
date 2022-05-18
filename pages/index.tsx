@@ -1,17 +1,23 @@
+import Theme from "../Components/Theme";
 import type { NextPage } from "next";
-import { Body } from "../Components/Body";
-import Expandable from "../Components/Theme";
+import { Grid } from "../Components/Grid";
+import { Tabs } from "../Components/Tasb";
 import { ThemeButton } from "../Components/ThemeButton";
-import styles from "../styles/Home.module.css";
+
+const tabs = [
+  { title: "London", content: "I love London", active: false },
+  { title: "Paris", content: "I love Paris", active: false },
+  { title: "Shanghai", content: "I love Shanghai", active: true },
+];
 
 const Home: NextPage = () => {
   return (
-    <Expandable>
-      <div className={styles.container}>
+    <Theme>
+      <Grid>
         <ThemeButton />
-        <Body />
-      </div>
-    </Expandable>
+        <Tabs tabs={tabs} />
+      </Grid>
+    </Theme>
   );
 };
 
