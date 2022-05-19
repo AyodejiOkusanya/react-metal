@@ -7,6 +7,8 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useComponentDidUpdate } from "../hooks/useComponentDidUpdate";
+import styles from "../styles/Theme.module.css";
 
 const initialContext = {
   isDarkMode: false,
@@ -28,6 +30,14 @@ const Theme = ({ children, onThemeChange }: ThemeProps) => {
   const toggle = useCallback(() => setTheme((prevMode) => !prevMode), []);
 
   const componentJustMounted = useRef(true);
+
+  useComponentDidUpdate(() => {
+    if (onThemeChange) {
+      onThemeChange(isDarkMode);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDarkMode]);
+
   useEffect(() => {
     if (!componentJustMounted.current && onThemeChange) {
       onThemeChange(isDarkMode);
@@ -39,7 +49,17 @@ const Theme = ({ children, onThemeChange }: ThemeProps) => {
 
   const value = useMemo(() => ({ isDarkMode, toggle }), [isDarkMode, toggle]);
 
-  return <Provider value={value}>{children}</Provider>;
+  return (
+    <Provider value={value}>
+      <div
+        className={`${styles.theme} ${
+          isDarkMode ? styles.themeDarkMode : styles.themeLightMode
+        }`}
+      >
+        {children}
+      </div>
+    </Provider>
+  );
 };
 
 export default Theme;

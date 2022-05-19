@@ -3,33 +3,34 @@
   border: none;
 }
 
-.tabHeadings {
+.tabs__headings {
   background-color: #f1f1f1;
 }
 
-.tabButton {
+.tabs__button {
   padding: 2rem 2rem;
   border: none;
   float: left;
   transition: 0.3s;
 }
 
-.tabButton:hover {
+.tabs__button:active {
   background-color: #ddd;
 }
 
-.tabButton.active {
-  background-color: #ccc;
+.tabs__button:hover {
+  background-color: #ddd;
+  cursor: pointer;
 }
 
-.tabContent {
+.tabs__tabContent {
   display: none;
   text-align: left;
   padding: 7rem 7rem;
   animation: fadeEffect 1s;
 }
 
-.active {
+.tabs__tabContentAcitve {
   display: block;
 }
 

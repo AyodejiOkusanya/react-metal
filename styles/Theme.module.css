@@ -1,0 +1,10 @@
+.theme {
+  width: 100%;
+}
+
+.themeDarkMode {
+  background-color: black;
+}
+.themeLightMode {
+  background-color: white;
+}

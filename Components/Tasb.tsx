@@ -21,10 +21,10 @@ export const Tabs = ({ tabs }: TabsProps) => {
   };
   return (
     <div className={styles.tabs}>
-      <div className={styles.tabHeadings}>
+      <div className={styles.tabs__headings}>
         {tabsState.map(({ title }) => (
           <button
-            className={styles.tabButton}
+            className={styles.tabs__button}
             onClick={() => handleClick(title)}
             key={`${title}-heading`}
           >
@@ -32,9 +32,14 @@ export const Tabs = ({ tabs }: TabsProps) => {
           </button>
         ))}
       </div>
-      <div className={styles.tabContent}>
+      <div>
         {tabsState.map(({ content, title, active }) => (
-          <div key={title} className={`${active ? styles.active : ""}`}>
+          <div
+            key={title}
+            className={`${styles.tabs__tabContent} ${
+              active ? styles.tabs__tabContentAcitve : ""
+            }`}
+          >
             {content}
           </div>
         ))}
